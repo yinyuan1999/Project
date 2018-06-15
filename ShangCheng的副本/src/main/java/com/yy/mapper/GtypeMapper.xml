@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<!--     
+    namespace：必须与对应的接口全类名一致  UserMapper.java  
+    id ：必须与对应接口的某个对应的方法名一致即必须要和UserMapper.java接口中的方法同名。  
+ -->    
+ <mapper namespace="com.yy.mapper.GtypeMapper">  
+   
+    <insert id="save" parameterType="Gtype">  
+        insert into gtype(typename) values(#{typename})  
+    </insert>  
+      
+    <update id="update" parameterType="Gtype">    
+        update gtype set gtype_typename=#{typename} where gtype_typeid=#{typeid}    
+    </update>   
+      
+    <delete id="delete" parameterType="int">    
+        delete from gtype where gtype_typeid=#{typeid}    
+    </delete>    
+        
+     <!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->      
+    <select id="findByTypeid" parameterType="int" resultType="Gtype">    
+        select gtype_typeid typeid,gtype_typename typename from gtype where gtype_typeid=#{typeid}    
+    </select>    
+        
+    <select id="findAll" resultType="Gtype">    
+        select gtype_typeid typeid,gtype_typename typename from gtype    
+    </select>   
+      
+ </mapper>
